@@ -1,0 +1,25 @@
+<body>
+    <div class="container">
+      <div class="login-box">
+        <h2>Login</h2>
+        <form [formGroup]="submitForm" (ngSubmit)="login()" autocomplete="off">
+          
+          <div class="user-box">
+            <input type="text" formControlName="email" name="username" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" formControlName="password" name="password" required="">
+            <label>Password</label>
+          </div>
+          <button type="submit">
+            <span></span><span></span><span></span><span></span>Submit
+          </button>
+        </form>
+        <!-- <div class="signup-link mt-3">
+          <p>Don't have an account? <a routerLink="registration">Sign up</a></p>
+        </div> -->
+      </div>
+    </div>
+  </body>
+  

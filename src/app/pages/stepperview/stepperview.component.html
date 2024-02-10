@@ -1,0 +1,94 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Region Registration Form</mat-card-title><br>
+
+    <button style="margin-left: 60%;" mat-raised-button color="warn" (click)="back()" ><mat-icon>reply</mat-icon>Back</button>
+
+
+  </mat-card-header>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <thead>Personal Information</thead>
+          <tr>
+            <th scope="col">checknumber</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
+            
+          </tr>
+          
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{staff?.checkNumber}}</td>
+            <td>{{staff?.firstname}}</td>
+            <td>{{staff?.middlename}}</td>
+            <td>{{staff?.lastname}}</td> 
+          </tr>
+        </tbody>
+        <thead>
+        <tr>
+          <th scope="col">Email</th> 
+          <th scope="col">Gender</th>
+          <th scope="col">Marital Status</th>
+          <th scope="col">Date On Least</th>    
+        </tr> 
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{staff?.email}}</td>
+          <td>{{staff?.gender}}</td> 
+          <td>{{staff?.maritalStatus}}</td> 
+          <td>{{staff?.dateOnList}}</td> 
+        </tr>
+        
+      </tbody>
+
+      <thead>
+        <tr>
+          <th scope="col">mobile</th> 
+          <th scope="col">section</th>
+          <th scope="col">Region Birth</th>
+          <th scope="col">District birth</th>    
+        </tr> 
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{staff?.mobile}}</td>
+          <td>{{staff?.section.sectionName}}</td> 
+          <td>{{staff?.birthdayRegion.regionName}}</td> 
+          <td>{{staff?.birthdayDistrict.districtName}}</td> 
+        </tr>
+
+        
+        
+      </tbody>
+
+      <thead>
+        <tr>
+         
+          <th scope="col">Force Number</th>    
+        </tr> 
+      </thead>
+      <tbody>
+        <tr>
+          
+          <td>{{staff?.forcenumber}}</td> 
+        </tr>
+
+        
+        
+      </tbody>
+
+
+
+      
+      </table>
+
+</mat-card>
+
+
+  

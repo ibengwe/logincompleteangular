@@ -1,0 +1,314 @@
+<form [formGroup]="EmpRegister" (ngSubmit)="save()">
+  <div class="col">
+    <mat-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="PersonalForm">
+        <div formGroupName="personal" class="row">
+          <ng-template matStepLabel>Fill out Basic</ng-template>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>firstName</mat-label>
+              <input matInput placeholder="First name"
+                formControlName="firstName" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Middlename</mat-label>
+              <input matInput placeholder="Middle name"
+                formControlName="middleName" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>lastName</mat-label>
+              <input matInput placeholder="Last name" formControlName="lastName"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>checkNumber</mat-label>
+              <input matInput placeholder="checkNumber"
+                formControlName="checkNumber" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>forceNumber</mat-label>
+              <input matInput placeholder="forceNumber"
+                formControlName="forceNumber" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>email</mat-label>
+              <input matInput placeholder="email" formControlName="email"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Enter your gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option *ngFor="let gender of gender"
+                  [value]="gender.value">
+                  {{gender.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Date On List</mat-label>
+              <input matInput [matDatepicker]="picker"
+                formControlName="dateOnList">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Choose birth date</mat-label>
+              <input matInput [matDatepicker]="dateOnListPicker"
+                formControlName="dateBirthday">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix
+                [for]="dateOnListPicker"></mat-datepicker-toggle>
+              <mat-datepicker #dateOnListPicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Maritul status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option *ngFor="let maritalStatus of maritalStatus"
+                  [value]="maritalStatus.value">
+                  {{maritalStatus.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>mobile</mat-label>
+              <input matInput placeholder="mobile" formControlName="mobile"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Region Birth</mat-label>
+              <mat-select formControlName="birthdayRegion"
+                [(ngModel)]="selectedRegion"
+                (ngModelChange)="getByRegion(selectedRegion)">
+                <mat-option *ngFor="let region of listRegion"
+                  [value]="region.regionId">
+                  {{region.regionName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>District Birth</mat-label>
+              <mat-select formControlName="birthdayDistrict">
+                <mat-option *ngFor="let district of districts"
+                  [value]="district.districtId">
+                  {{district.districtName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-raised-button color="primary"
+              matStepperNext>Next</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step [stepControl]="RecognitionForm" label="Recognition Details">
+        <div formGroupName="recognition" class="row">
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>bodyBuild</mat-label>
+              <input matInput formControlName="bodyBuild"
+                placeholder="bodyBuild" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>hairstyle</mat-label>
+              <input matInput formControlName="hairStle" placeholder="hairStle"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>eyes</mat-label>
+              <input matInput formControlName="eyes" placeholder="eyes"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>hairOnFace</mat-label>
+              <input matInput formControlName="hairOnFace" placeholder="hairOnFace"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>bloodGroup</mat-label>
+              <input matInput formControlName="bloodGroup" placeholder="bloodGroup"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>height</mat-label>
+              <input matInput formControlName="height" placeholder="height"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>weight</mat-label>
+              <input matInput formControlName="weight" placeholder="weight"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>mark</mat-label>
+              <input matInput formControlName="mark" placeholder="mark"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>chest</mat-label>
+              <input matInput formControlName="chest" placeholder="chest"
+                required>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-raised-button color="primary"
+              matStepperPrevious>Back</button>|
+            <button mat-raised-button color="primary"
+              matStepperNext>Next</button>
+          </div>
+        </div>
+      </mat-step>
+      <mat-step label="Other Details" [stepControl]="OtherForm">
+        <div formGroupName="other" class="row">
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>tribe</mat-label>
+              <input matInput formControlName="tribe" placeholder="tribe">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>noOfChildren</mat-label>
+              <input matInput formControlName="noOfChildren" placeholder="noOfChildren"
+                required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>successor</mat-label>
+              <input matInput formControlName="successor"
+                placeholder="successor" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>relationSuccessor</mat-label>
+              <input matInput formControlName="relationSuccessor"
+                placeholder="relationSuccessor" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>executiveOfficer</mat-label>
+              <input matInput formControlName="executiveOfficer"
+                placeholder="executiveOfficer" required>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>headMan</mat-label>
+              <input matInput formControlName="headMan"
+                placeholder="headMan" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>village</mat-label>
+              <input matInput formControlName="village"
+                placeholder="village" required>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div>
+          <button mat-raised-button color="primary"
+            matStepperPrevious>Back</button>|
+          <button mat-raised-button
+            color="primary"><mat-icon>save</mat-icon>save</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </div>
+</form>

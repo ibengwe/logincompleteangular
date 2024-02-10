@@ -1,0 +1,59 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      Menu
+    </mat-toolbar>
+    <mat-nav-list>
+      <ng-container *ngIf="role=='USER'" >
+        <a mat-list-item routerLink="user-dashboard">        
+          <mat-icon style="vertical-align: middle; margin-right: 5px;">dashboard</mat-icon>
+          user dashboard</a>
+      </ng-container>
+      <ng-container *ngIf="role=='ADMIN'">
+         <a mat-list-item routerLink="admin-dashboard"><mat-icon style="vertical-align: middle; margin-right: 5px;">av_timer</mat-icon>admin dasboard</a>
+         <!-- <a mat-list-item routerLink="register-user"><mat-icon style="vertical-align: middle; margin-right: 5px;">supervisor_account</mat-icon>register-user</a> -->
+         <a mat-list-item routerLink="section"><mat-icon style="vertical-align: middle; margin-right: 5px;">work</mat-icon>section</a>
+         <a mat-list-item routerLink="region"><mat-icon style="vertical-align: middle; margin-right: 5px;">location_on</mat-icon>region</a>
+         <a mat-list-item routerLink="district"><mat-icon style="vertical-align: middle; margin-right: 5px;">gps_fixed</mat-icon>district</a>
+         <!-- <a mat-list-item routerLink="staffForm"><mat-icon style="vertical-align: middle; margin-right: 5px;">work</mat-icon>staff Form</a> -->
+         <a mat-list-item routerLink="user"><mat-icon style="vertical-align: middle; margin-right: 5px;">work</mat-icon>user</a>
+         <!-- <a mat-list-item routerLink="stepper"><mat-icon style="vertical-align: middle; margin-right: 5px;">person_add</mat-icon>Add Staff</a> -->
+         <a mat-list-item routerLink="staffList"><mat-icon style="vertical-align: middle; margin-right: 5px;">person_add</mat-icon>Staff List</a>
+
+      </ng-container>
+      <!-- <a mat-list-item routerLink="">Link 3</a> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+      }
+      <span>securityangular</span>
+      <!-- <span> {{fullName}}</span> -->
+      <span class="spacer"></span>
+      <span class="right-links">
+        <a mat-button class="no-underline">
+          <img src="./assets/img/avater.png" alt="Profile Image" class="profile-image">
+            {{ fullName }}
+        </a> 
+        <a mat-button (click)="onLogOut()">
+          <mat-icon>power_settings_new</mat-icon>
+        </a>
+      </span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="container-fluid mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,45 @@
+<mat-card>
+<mat-card-header>
+
+<mat-form-field>
+    <input matInput (keyup)="FilterChange($event)" placeholder="Enter the Value" #input>
+  </mat-form-field>
+  <button style="margin-left: 60%;" mat-raised-button color="primary" (click)="onAdd()" >Add Region +</button>
+</mat-card-header>
+<mat-card-content>
+
+<table matSort  mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Displayed ID number -->
+    <ng-container matColumnDef="ID">
+      <th mat-sort-header mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.regionId}} </td>
+    </ng-container>
+    <!-- Job Column -->
+    <ng-container matColumnDef="job">
+      <th mat-sort-header mat-header-cell *matHeaderCellDef> Region Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.regionName}} </td>
+    </ng-container>
+    <!-- Action Column -->
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+
+        <button mat-raised-button color="primary" (click)="onEdit(element)" >Edit</button>
+        <!-- <button mat-raised-button color="warn" (click)="onDelete(element.regionId)"  >delete</button> -->
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- Row shown when there is no matching data. -->
+<tr class="mat-row" *matNoDataRow>
+  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+</tr>
+  </table>
+</mat-card-content>
+<mat-card-footer>
+<mat-paginator [pageSizeOptions]="[5,15,20]" showFirstLastButtons="" ></mat-paginator>
+</mat-card-footer>
+</mat-card>

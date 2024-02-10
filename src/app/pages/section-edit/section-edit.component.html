@@ -1,0 +1,16 @@
+<button mat-raised-button color="warn" (click)="back()" ><mat-icon>reply</mat-icon>Back</button>
+
+     <form [formGroup]="sectionForm">
+        <br>
+      <div class="row">
+        <div class="col-md-5"> 
+          <mat-form-field class="w-100 example-full-width" appearance="outline">
+              <mat-label>Section Name</mat-label>
+              <input matInput placeholder="section name" formControlName="sectionName" >
+            </mat-form-field>
+        </div>
+        </div> 
+
+        <button mat-raised-button color="primary" (click)="onSave()" [disabled]="sectionForm.invalid"><mat-icon>save</mat-icon>save</button>
+
+    </form>

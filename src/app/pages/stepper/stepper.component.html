@@ -1,0 +1,171 @@
+<mat-card>
+
+  <mat-card-header>
+    <mat-card-title>Staff Registration Form</mat-card-title><br>
+
+    <button style="margin-left: 60%;" mat-raised-button color="warn" (click)="back()" ><mat-icon>reply</mat-icon>Back</button>
+
+
+  </mat-card-header>
+  <div class="col">
+    <mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" >
+      <form [formGroup]="firstFormGroup" class="row">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>firstName</mat-label>
+                <input matInput placeholder="First name" formControlName="firstname" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>middlename</mat-label>
+                <input matInput placeholder="middlename" formControlName="middlename" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>lastname</mat-label>
+                <input matInput placeholder="lastname" formControlName="lastname" required>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>email</mat-label>
+                <input matInput placeholder="email" formControlName="email" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>mobile</mat-label>
+                <input matInput placeholder="mobile" formControlName="mobile" required>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                 <mat-label>section</mat-label>
+                <mat-select formControlName="section">
+                    <mat-option *ngFor="let section of sectionList" [value]="section">{{section.sectionName}}</mat-option>
+                  </mat-select>
+
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Region Birth</mat-label>
+              <mat-select formControlName="birthdayRegion"[(ngModel)]="selectedRegion"
+                (ngModelChange)="getByRegion(selectedRegion)"><mat-option *ngFor="let region of listRegion"[value]="region.regionId">{{region.regionName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>District Birth</mat-label>
+              <mat-select formControlName="birthdayDistrict">
+                <mat-option *ngFor="let district of districts"
+                  [value]="district.districtId">
+                  {{district.districtName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>forcenumber</mat-label>
+                <input matInput placeholder="forcenumber" formControlName="forcenumber" required>
+            </mat-form-field>
+        </div>
+
+        
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width" appearance="outline">
+                <mat-label>checkNumber</mat-label>
+                <input matInput placeholder="checkNumber" formControlName="checkNumber" required>
+            </mat-form-field>
+        </div>
+
+
+
+        <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Enter your gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option *ngFor="let gender of gender"[value]="gender.value">{{gender.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Maritul status</mat-label>
+              <mat-select formControlName="maritalStatus">
+                <mat-option *ngFor="let maritalStatus of maritalStatus"[value]="maritalStatus.value">{{maritalStatus.viewValue}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="w-100 example-full-width"
+              appearance="outline">
+              <mat-label>Date On List</mat-label>
+              <input matInput [matDatepicker]="picker"
+                formControlName="dateOnList">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix
+                [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" >
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="secondCtrl" placeholder="New York, NY"
+                 required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-raised-button (click)="saveFormData()">Save</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>
+</mat-card>
+
+
+  
